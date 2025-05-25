@@ -1,4 +1,4 @@
-![alt text](image.png)
+![alt text](./src/assets/image.png)
 # Tracker📈
 
 A progress-tracking roadmap to help users track their learning in 🌐 **Frontend**, ⚙️ **Backend**, ☁️ **DevOps**, 🎨 **Design**, and 🤖 **Generative AI (GenAI)**. Stay on track and monitor your progress interactively!
