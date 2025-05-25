@@ -1,0 +1,18 @@
+/* App-specific styling */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Empty state styling */
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  color: var(--text-muted);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
