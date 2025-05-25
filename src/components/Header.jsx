@@ -1,6 +1,4 @@
 import React from 'react';
-import { MdTerminal } from 'react-icons/md';
-
 const Header = ({ 
   currentRoadmapType, 
   onRoadmapChange, 
@@ -15,7 +13,6 @@ const Header = ({
   return (
     <header className="header">
       <div className="logo">
-        <span className="logo-icon"><MdTerminal /></span>
         <h1>Tracker</h1>
       </div>
       
