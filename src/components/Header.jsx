@@ -1,12 +1,9 @@
 import React from 'react';
-import { MdTerminal } from 'react-icons/md';
 
 const Header = ({ 
   currentRoadmapType, 
   onRoadmapChange, 
-  isDarkMode,
   isCarbonMode, 
-  toggleDarkMode,
   toggleCarbonMode, 
   exportProgress 
 }) => {
@@ -32,22 +29,15 @@ const Header = ({
           ))}
         </div>
       </nav>
-        <div className="header-actions">        <div className="theme-toggle-group">
-          <button 
-            className={`theme-toggle ${isDarkMode ? 'active' : ''}`}
-            aria-label="Toggle dark mode"
-            onClick={toggleDarkMode}
-            title="Toggle Dark Mode"
-          >
-            <i className={`fas ${isDarkMode ? 'fa-sun' : 'fa-moon'}`}></i>
-          </button>
+      <div className="header-actions">
+        <div className="theme-toggle-group">
           <button 
             className={`theme-toggle-carbon ${isCarbonMode ? 'active' : ''}`}
             aria-label="Toggle carbon mode"
             onClick={toggleCarbonMode}
             title="Toggle Carbon Green Theme"
           >
-            <MdTerminal />
+            <span>Theme</span>
           </button>
         </div>
         <button 
