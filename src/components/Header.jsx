@@ -1,4 +1,6 @@
 import React from 'react';
+import { MdTerminal } from 'react-icons/md';
+
 const Header = ({ 
   currentRoadmapType, 
   onRoadmapChange, 
