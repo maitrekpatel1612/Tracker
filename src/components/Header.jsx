@@ -1,51 +1,55 @@
 import React from 'react';
+import SidebarToggle from './SidebarToggle';
 
 const Header = ({ 
   currentRoadmapType, 
   onRoadmapChange, 
-  isCarbonMode, 
-  toggleCarbonMode, 
-  exportProgress 
+  isDarkMode,
+  toggleDarkMode,
+  toggleSidebar
 }) => {
   const roadmapTypes = ['devops', 'frontend', 'backend', 'design', 'genai'];
 
   return (
-    <header className="header">
-      <div className="logo">
+    <header className="header">      <div className="logo">
+        <div className="logo-icon">
+          <i className="fas fa-chart-line"></i>
+        </div>
         <h1>Tracker</h1>
       </div>
-      
+      <div className="mobile-sidebar-toggle">
+        <SidebarToggle toggleSidebar={toggleSidebar} />
+      </div>
       <nav className="roadmap-nav">
-        <div className="roadmap-tabs">
-          {roadmapTypes.map((type) => (
-            <button 
-              key={type}
-              className={`roadmap-tab ${type === currentRoadmapType ? 'active' : ''}`} 
-              data-roadmap={type}
-              onClick={() => onRoadmapChange(type)}
-            >
-              {type.charAt(0).toUpperCase() + type.slice(1)}
-            </button>
-          ))}
+        <div className="roadmap-tabs-container">
+          <div className="roadmap-tabs">
+            {roadmapTypes.map((type) => (
+              <button 
+                key={type}
+                className={`roadmap-tab ${type === currentRoadmapType ? 'active' : ''}`} 
+                data-roadmap={type}
+                onClick={() => onRoadmapChange(type)}
+              >
+                {type.charAt(0).toUpperCase() + type.slice(1)}
+              </button>
+            ))}
+          </div>
         </div>
       </nav>
       <div className="header-actions">
-        <div className="theme-toggle-group">
-          <button 
-            className={`theme-toggle-carbon ${isCarbonMode ? 'active' : ''}`}
-            aria-label="Toggle carbon mode"
-            onClick={toggleCarbonMode}
-            title="Toggle Carbon Green Theme"
-          >
-            <span>Theme</span>
-          </button>
+        <div className="theme-toggle-container">
+          <label className="theme-switch">
+            <input 
+              type="checkbox" 
+              checked={isDarkMode} 
+              onChange={toggleDarkMode}
+              aria-label="Toggle dark mode"
+            />
+            <span className="theme-slider"></span>
+            <i className="fas fa-sun theme-icon light"></i>
+            <i className="fas fa-moon theme-icon dark"></i>
+          </label>
         </div>
-        <button 
-          className="btn btn-primary export-btn"
-          onClick={exportProgress}
-        >
-          <i className="fas fa-file-pdf"></i> Export to PDF
-        </button>
       </div>
     </header>
   );

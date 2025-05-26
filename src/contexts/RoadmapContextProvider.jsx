@@ -8,11 +8,9 @@ import { designRoadmapData } from '../data/designRoadmap';
 import { genAIRoadmapData } from '../data/genaiRoadmap';
 
 // Context provider component
-export const RoadmapProvider = ({ children }) => {
-  const [currentRoadmapType, setCurrentRoadmapType] = useState('devops');
+export const RoadmapProvider = ({ children }) => {  const [currentRoadmapType, setCurrentRoadmapType] = useState('devops');
   const [currentCategory, setCurrentCategory] = useState('');
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isCarbonMode, setIsCarbonMode] = useState(false);
   const [roadmapData, setRoadmapData] = useState({});
   const [stats, setStats] = useState({
     completed: 0,
@@ -38,12 +36,10 @@ export const RoadmapProvider = ({ children }) => {
       default:
         return devopsRoadmapData;
     }
-  };
-  // Load data from local storage
+  };  // Load data from local storage
   useEffect(() => {
     const savedData = localStorage.getItem('roadmapData');
     const savedDarkMode = localStorage.getItem('darkMode');
-    const savedCarbonMode = localStorage.getItem('carbonMode');
     const savedRoadmapType = localStorage.getItem('currentRoadmapType');
     
     if (savedData) {
@@ -55,9 +51,6 @@ export const RoadmapProvider = ({ children }) => {
     if (savedDarkMode === 'true') {
       setIsDarkMode(true);
       document.body.classList.add('dark-mode');
-    } else if (savedCarbonMode === 'true') {
-      setIsCarbonMode(true);
-      document.body.classList.add('carbon-mode');
     }
     
     if (savedRoadmapType) {
@@ -86,37 +79,18 @@ export const RoadmapProvider = ({ children }) => {
     updateStats();
     saveToLocalStorage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [roadmapData]);
-  // Toggle theme modes
+  }, [roadmapData]);  // Toggle dark mode
   const toggleDarkMode = () => {
     const newDarkMode = !isDarkMode;
     setIsDarkMode(newDarkMode);
     
     if (newDarkMode) {
       document.body.classList.add('dark-mode');
-      setIsCarbonMode(false);
-      document.body.classList.remove('carbon-mode');
     } else {
       document.body.classList.remove('dark-mode');
     }
     
     localStorage.setItem('darkMode', newDarkMode);
-  };
-  
-  // Toggle carbon mode
-  const toggleCarbonMode = () => {
-    const newCarbonMode = !isCarbonMode;
-    setIsCarbonMode(newCarbonMode);
-    
-    if (newCarbonMode) {
-      document.body.classList.add('carbon-mode');
-      setIsDarkMode(false);
-      document.body.classList.remove('dark-mode');
-    } else {
-      document.body.classList.remove('carbon-mode');
-    }
-    
-    localStorage.setItem('carbonMode', newCarbonMode);
   };
 
   // Save roadmap data to local storage
@@ -186,8 +160,7 @@ export const RoadmapProvider = ({ children }) => {
   // Get current category data
   const getCurrentCategory = () => {
     return roadmapData[currentCategory] || null;
-  };
-  // Define context value
+  };  // Define context value
   const contextValue = {
     currentRoadmapType,
     setCurrentRoadmapType,
@@ -195,8 +168,6 @@ export const RoadmapProvider = ({ children }) => {
     setCurrentCategory,
     isDarkMode,
     toggleDarkMode,
-    isCarbonMode,
-    toggleCarbonMode,
     roadmapData,
     stats,
     overallProgress,

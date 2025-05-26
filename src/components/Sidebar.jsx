@@ -4,10 +4,12 @@ const Sidebar = ({
   categories, 
   currentCategory, 
   onCategoryChange, 
-  overallProgress 
+  overallProgress,
+  className = ''
 }) => {
   return (
-    <div className="sidebar">      <div className="progress-overview">
+    <div className={`sidebar ${className}`}>
+      <div className="progress-overview">
         <h2><i className="fas fa-chart-pie"></i> Overall Progress</h2>
         <div className="progress-circle">
           <span className="progress-percentage">{overallProgress}%</span>
