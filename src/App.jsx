@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import SidebarToggle from './components/SidebarToggle';
+import CategoryDrawer from './components/CategoryDrawer';
 import { RoadmapProvider } from './contexts/RoadmapContextProvider';
 import { useRoadmap } from './hooks/useRoadmap';
 
@@ -28,10 +29,12 @@ function AppContent() {
   } = useRoadmap();
   
   const [showSidebar, setShowSidebar] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
 
-  // Close sidebar when changing route on mobile
+  // Close sidebar and drawer when changing route on mobile
   useEffect(() => {
     setShowSidebar(false);
+    setShowDrawer(false);
   }, [currentCategory, currentRoadmapType]);
   
   // Close sidebar when clicking outside on mobile
@@ -43,7 +46,7 @@ function AppContent() {
       if (showSidebar && 
           sidebar && 
           !sidebar.contains(event.target) && 
-          !sidebarToggle.contains(event.target)) {
+          !sidebarToggle?.contains(event.target)) {
         setShowSidebar(false);
       }
     };
@@ -68,6 +71,10 @@ function AppContent() {
   
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
+  };
+  
+  const toggleDrawer = () => {
+    setShowDrawer(!showDrawer);
   };
   
   const categories = getCategories();
@@ -101,9 +108,18 @@ function AppContent() {
           onTopicUpdate={handleTopicUpdate}
           overallProgress={overallProgress}
         />
+        
+        {/* New Category Drawer Component */}
+        <CategoryDrawer
+          categories={categories}
+          currentCategory={currentCategory}
+          onCategoryChange={handleCategoryChange}
+          isOpen={showDrawer}
+          onClose={() => setShowDrawer(false)}
+        />
       </div>
       
-      <SidebarToggle toggleSidebar={toggleSidebar} />
+      <SidebarToggle toggleDrawer={toggleDrawer} />
     </div>
   );
 }

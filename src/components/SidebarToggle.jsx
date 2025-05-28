@@ -1,13 +1,13 @@
 import React from 'react';
 
-const SidebarToggle = ({ toggleSidebar }) => {
+const SidebarToggle = ({ toggleDrawer }) => {
   return (
     <button 
-      className="sidebar-toggle" 
-      onClick={toggleSidebar}
-      aria-label="Toggle sidebar"
+      className="drawer-toggle" 
+      onClick={toggleDrawer}
+      aria-label="Toggle categories"
     >
-      <i className="fas fa-bars"></i>
+      <i className="fas fa-chevron-up"></i>
     </button>
   );
 };
