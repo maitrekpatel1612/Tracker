@@ -90,7 +90,6 @@ function AppContent() {
           categories={categories}
           currentCategory={currentCategory}
           onCategoryChange={handleCategoryChange}
-          overallProgress={overallProgress}
           className={showSidebar ? 'show' : ''}
         />
 
@@ -100,6 +99,7 @@ function AppContent() {
           currentCategory={currentCategory}
           categoryData={currentCategoryData}
           onTopicUpdate={handleTopicUpdate}
+          overallProgress={overallProgress}
         />
       </div>
       

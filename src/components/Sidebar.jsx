@@ -4,30 +4,9 @@ const Sidebar = ({
   categories, 
   currentCategory, 
   onCategoryChange, 
-  overallProgress,
   className = ''
-}) => {
-  return (
+}) => {  return (
     <div className={`sidebar ${className}`}>
-      <div className="progress-overview">
-        <h2><i className="fas fa-chart-pie"></i> Overall Progress</h2>
-        <div className="progress-circle">
-          <span className="progress-percentage">{overallProgress}%</span>
-          <svg width="120" height="120" className="progress-ring">
-            <circle className="progress-ring-circle-bg" cx="60" cy="60" r="54" />
-            <circle 
-              className="progress-ring-circle" 
-              cx="60" 
-              cy="60" 
-              r="54" 
-              style={{
-                strokeDasharray: `${2 * Math.PI * 54} ${2 * Math.PI * 54}`,
-                strokeDashoffset: `${2 * Math.PI * 54 - (overallProgress / 100) * 2 * Math.PI * 54}`
-              }}
-            />
-          </svg>
-        </div>
-      </div>
       <div className="categories">
         <h2><i className="fas fa-folder-tree"></i> Categories</h2>
         <ul className="category-list">

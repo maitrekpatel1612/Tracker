@@ -2,6 +2,15 @@ import React from 'react';
 
 const cardData = [
   {
+    key: 'overallprogress',
+    icon: 'fas fa-chart-pie',
+    accentClass: 'overallprogress',
+    titleIcon: 'fas fa-chart-pie',
+    title: 'Overall Progress',
+    valueKey: 'overallProgress',
+    isPercentage: true
+  },
+  {
     key: 'completed',
     icon: 'fas fa-trophy',
     accentClass: 'completed',
@@ -13,7 +22,7 @@ const cardData = [
     key: 'inprogress',
     icon: 'fas fa-cogs',
     accentClass: 'inprogress',
-    titleIcon: 'fas fa-spinner fa-spin',
+    titleIcon: 'fas fa-spinner',
     title: 'In Progress',
     valueKey: 'inProgress'
   },
@@ -35,9 +44,9 @@ const cardData = [
   }
 ];
 
-const StatsCards = ({ stats }) => {
+const StatsCards = ({ stats, overallProgress }) => {
   return (
-    <div className="stats-cards beautiful-cards grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4">
+    <div className="stats-cards beautiful-cards grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 p-4">
       {cardData.map(card => (
         <div
           className={`stat-card beautiful-card ${card.accentClass} bg-white shadow-lg rounded-xl p-6 relative flex flex-col items-center ring-1 ring-gray-100 hover:ring-gray-300 transform transition-all duration-300 hover:shadow-green`}
@@ -45,11 +54,11 @@ const StatsCards = ({ stats }) => {
         >
           <div className={`stat-accent beautiful-accent ${card.accentClass} absolute top-0 left-0 h-1 w-full`}></div>
           <div className="stat-card-content text-center">
-            <div className="stat-icon beautiful-icon text-3xl mb-2">
-              <i className={card.icon}></i>
-            </div>
             <div className="stat-number beautiful-number text-2xl font-bold mb-2">
-              {stats[card.valueKey]}
+              {card.valueKey === 'overallProgress' 
+                ? `${overallProgress}${card.isPercentage ? '%' : ''}`
+                : stats[card.valueKey]
+              }
             </div>
             <div className="stat-title beautiful-title text-gray-600">
               <i className={card.titleIcon}></i> {card.title}

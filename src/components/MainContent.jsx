@@ -7,7 +7,8 @@ const MainContent = ({
   stats, 
   isDarkMode,
   categoryData,
-  onTopicUpdate
+  onTopicUpdate,
+  overallProgress
 }) => {
   if (!categoryData) {
     return (
@@ -18,10 +19,9 @@ const MainContent = ({
       </main>
     );
   }
-  
-  return (
+    return (
     <main className="content">
-      <StatsCards stats={stats} />
+      <StatsCards stats={stats} overallProgress={overallProgress} />
       <ProgressChart isDarkMode={isDarkMode} />
       
       <div className="roadmap-container">
