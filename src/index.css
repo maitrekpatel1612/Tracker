@@ -679,20 +679,6 @@ body {
     color: #00cc66;
 }
 
-.topic-status::after {
-    content: "";
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid currentColor;
-    pointer-events: none;
-}
-
 .expand-btn {
     background: none;
     border: none;
@@ -901,8 +887,8 @@ body {
 .subtopic-checkbox {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 1.2rem;
+  height: 1.2rem;
   border: 2px solid var(--border-color);
   border-radius: 4px;
   outline: none;
