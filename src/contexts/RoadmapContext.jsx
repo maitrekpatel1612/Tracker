@@ -4,6 +4,7 @@ import { frontendRoadmapData } from '../data/frontendRoadmap';
 import { backendRoadmapData } from '../data/backendRoadmap';
 import { designRoadmapData } from '../data/designRoadmap';
 import { genAIRoadmapData } from '../data/genaiRoadmap';
+import { systemDesignRoadmapData } from '../data/systemdesignRoadmap';
 
 // Create context
 export const RoadmapContext = createContext();
@@ -20,8 +21,7 @@ export const RoadmapProvider = ({ children }) => {
     notStarted: 0,
     totalHours: 0
   });
-  const [overallProgress, setOverallProgress] = useState(0);
-  // Get current roadmap based on selected type
+  const [overallProgress, setOverallProgress] = useState(0);  // Get current roadmap based on selected type
   const getCurrentRoadmap = () => {
     switch (currentRoadmapType) {
       case 'devops':
@@ -34,6 +34,8 @@ export const RoadmapProvider = ({ children }) => {
         return designRoadmapData;
       case 'genai':
         return genAIRoadmapData;
+      case 'systemdesign':
+        return systemDesignRoadmapData;
       default:
         return devopsRoadmapData;
     }

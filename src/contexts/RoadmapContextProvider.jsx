@@ -6,6 +6,7 @@ import { frontendRoadmapData } from '../data/frontendRoadmap';
 import { backendRoadmapData } from '../data/backendRoadmap';
 import { designRoadmapData } from '../data/designRoadmap';
 import { genAIRoadmapData } from '../data/genaiRoadmap';
+import { systemDesignRoadmapData } from '../data/systemdesignRoadmap';
 
 // Context provider component
 export const RoadmapProvider = ({ children }) => {  const [currentRoadmapType, setCurrentRoadmapType] = useState('devops');
@@ -19,7 +20,6 @@ export const RoadmapProvider = ({ children }) => {  const [currentRoadmapType, s
     totalHours: 0
   });
   const [overallProgress, setOverallProgress] = useState(0);
-
   // Get current roadmap based on selected type
   const getCurrentRoadmap = () => {
     switch (currentRoadmapType) {
@@ -33,10 +33,12 @@ export const RoadmapProvider = ({ children }) => {  const [currentRoadmapType, s
         return designRoadmapData;
       case 'genai':
         return genAIRoadmapData;
+      case 'systemdesign':
+        return systemDesignRoadmapData;
       default:
         return devopsRoadmapData;
     }
-  };  // Load data from local storage
+  };// Load data from local storage
   useEffect(() => {
     const savedData = localStorage.getItem('roadmapData');
     const savedDarkMode = localStorage.getItem('darkMode');

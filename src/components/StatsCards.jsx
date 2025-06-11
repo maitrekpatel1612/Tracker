@@ -46,7 +46,7 @@ const cardData = [
 
 const StatsCards = ({ stats, overallProgress }) => {
   return (
-    <div className="stats-cards beautiful-cards grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 p-4">
+    <div className="stats-cards beautiful-cards">
       {cardData.map(card => (
         <div
           className={`stat-card beautiful-card ${card.accentClass} bg-white shadow-lg rounded-xl p-6 relative flex flex-col items-center ring-1 ring-gray-100 hover:ring-gray-300 transform transition-all duration-300 hover:shadow-green`}

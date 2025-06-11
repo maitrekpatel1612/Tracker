@@ -85,7 +85,7 @@ canvas {
   }
 
   .stats-cards {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .stat-number {
@@ -95,6 +95,11 @@ canvas {
   .progress-circle {
     width: 100px;
     height: 100px;
+  }
+
+  .graph-container {
+    margin-top: 1rem;
+    padding: 1rem;
   }
 }
 
@@ -163,7 +168,7 @@ canvas {
   }
 
   .roadmap-tabs-container {
-    width: 100 vw;
+    width: 100svw;
     overflow-x: auto;
     margin: 0 -1rem;
     padding: 0 1rem;
@@ -385,5 +390,76 @@ canvas {
     -webkit-appearance: none;
     appearance: none;
     border-radius: 4px;
+  }
+}
+
+/* ---------- Extra Styles for Stats Cards and Progress Chart ---------- */
+/* Ensure stats cards stay in a single row on all screen sizes */
+.stats-cards {
+  display: flex;
+  flex-wrap: nowrap;  overflow-x: auto;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 0.5rem;
+}
+
+.stat-card {
+  scroll-snap-align: start;
+  min-width: 180px;
+  flex: 1;
+}
+
+/* Style for the progress chart at the bottom */
+.graph-container {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.chart-wrapper {
+  height: 250px;
+  margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .stat-card {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-cards {
+    padding: 0.5rem;
+  }
+  
+  .stat-card {
+    min-width: 140px;
+    padding: 0.75rem !important;
+  }
+  
+  .stat-number {
+    font-size: 1.4rem !important;
+  }
+  
+  .stat-title {
+    font-size: 0.8rem;
+  }
+  
+  .chart-wrapper {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card {
+    min-width: 120px;
+  }
+  
+  .chart-wrapper {
+    height: 180px;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Chart from 'chart.js/auto';
 import { useRoadmap } from '../hooks/useRoadmap';
 
@@ -36,7 +36,7 @@ const ProgressChart = ({ isDarkMode, timeframe = 'week' }) => {
   };
   
   // Generate chart data based on real completion
-  const getChartData = (timeframe) => {
+  const getChartData = useCallback((timeframe) => {
     const labels = [];
     const data = [];
     const { completedTopics } = getRealCompletionData();
@@ -76,7 +76,8 @@ const ProgressChart = ({ isDarkMode, timeframe = 'week' }) => {
     }
 
     return { labels, data };
-  };
+  }, []);
+  
   useEffect(() => {
     // Destroy existing chart on component rerender
     if (chartInstance.current) {
@@ -194,12 +195,11 @@ const ProgressChart = ({ isDarkMode, timeframe = 'week' }) => {
         chartInstance.current.destroy();
       }
     };
-  }, [activeTimeframe, isDarkMode, roadmapData]);
+  }, [activeTimeframe, isDarkMode, roadmapData, getChartData]);
 
   const handleTimeframeChange = (newTimeframe) => {
     setActiveTimeframe(newTimeframe.toLowerCase());
   };
-
   return (
     <div className="graph-container">
       <div className="graph-header">

@@ -1,6 +1,11 @@
 import React from 'react';
 
 const Subtopic = ({ subtopic, onStatusChange }) => {
+  // Add null check for subtopic
+  if (!subtopic) {
+    return null;
+  }
+
   const getResourceLinks = () => {
     if (!subtopic.resources || subtopic.resources.length === 0) {
       return null;
@@ -22,17 +27,22 @@ const Subtopic = ({ subtopic, onStatusChange }) => {
     );
   };
 
-  return (    <div className="subtopic-item">
+  return (
+    <div className="subtopic-item">
       <div className="subtopic-header">
         <div className="subtopic-title-wrapper">
           <input 
             type="checkbox" 
             className="subtopic-checkbox"
-            checked={subtopic.status === 'completed'}
-            onChange={(e) => onStatusChange(
-              subtopic.id, 
-              e.target.checked ? 'completed' : 'not-started'
-            )}
+            checked={subtopic?.status === 'completed'}
+            onChange={(e) => {
+              if (onStatusChange) {
+                onStatusChange(
+                  subtopic.id, 
+                  e.target.checked ? 'completed' : 'not-started'
+                );
+              }
+            }}
             id={`checkbox-${subtopic.id}`}
           />
           <span className="subtopic-title">

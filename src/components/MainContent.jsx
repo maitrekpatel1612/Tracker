@@ -18,11 +18,9 @@ const MainContent = ({
         </div>
       </main>
     );
-  }
-    return (
+  }    return (
     <main className="content">
       <StatsCards stats={stats} overallProgress={overallProgress} />
-      <ProgressChart isDarkMode={isDarkMode} />
       
       <div className="roadmap-container">
         <div className="roadmap-content">
@@ -32,6 +30,8 @@ const MainContent = ({
           />
         </div>
       </div>
+      
+      <ProgressChart isDarkMode={isDarkMode} />
     </main>
   );
 };

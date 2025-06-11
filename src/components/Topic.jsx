@@ -45,7 +45,7 @@ const Topic = ({ topic, onTopicUpdate }) => {
         : subtopic
     );
     
-    onTopicUpdate({
+    onTopicUpdate?.({
       ...topic,
       subtopics: updatedSubtopics
     });
@@ -63,6 +63,10 @@ const Topic = ({ topic, onTopicUpdate }) => {
         return { icon: 'fa-hourglass-start', text: 'Not Started', color: 'var(--text-muted)' };
     }
   };
+
+  if (!topic) {
+    return null;
+  }
 
   const statusDisplay = getStatusDisplay();
   const completedCount = topic.subtopics ? topic.subtopics.filter(sub => sub.status === 'completed').length : 0;
@@ -87,9 +91,6 @@ const Topic = ({ topic, onTopicUpdate }) => {
               <i className={`fas ${statusDisplay.icon}`}></i> {statusDisplay.text}
             </span>
           </div>
-          <button className="expand-btn">
-            <i className={`fas fa-chevron-${expanded ? 'up' : 'down'}`}></i>
-          </button>
         </div>
       </div>
 
