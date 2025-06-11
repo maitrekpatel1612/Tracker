@@ -526,6 +526,16 @@ canvas {
   box-shadow: var(--shadow-sm);
 }
 
+/* Adjust z-index and stacking context for sidebar */
+.sidebar {
+  position: sticky;
+  top: 85px; /* Match the height of the header */
+  height: calc(100vh - 60px); /* Adjust height to account for header */
+  overflow-y: auto; /* Allow scrolling within the sidebar if content overflows */
+  background-color: var(--card-bg); /* Ensure a background to avoid transparency issues */
+  padding-top: 1rem; /* Add padding to the top */
+}
+
 /* Make roadmap tabs container static on mobile for better touch experience */
 @media (max-width: 480px) {
   .roadmap-tabs-container {

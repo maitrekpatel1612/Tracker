@@ -13,7 +13,6 @@ const Subtopic = ({ subtopic, onStatusChange }) => {
 
     return (
       <div className="subtopic-resources">
-        <span>Resources:</span>
         <ul>
           {subtopic.resources.map((resource, index) => (
             <li key={index}>
