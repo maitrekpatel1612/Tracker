@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { roadmapData as devopsRoadmapData } from '../data/devopsRoadmap';
 import { frontendRoadmapData } from '../data/frontendRoadmap';
 import { backendRoadmapData } from '../data/backendRoadmap';
@@ -24,8 +24,10 @@ export const RoadmapProvider = ({ children }) => {
     notStarted: 0,
     totalHours: 0
   });
-  const [overallProgress, setOverallProgress] = useState(0);  // Get current roadmap based on selected type
-  const getCurrentRoadmap = () => {
+  const [overallProgress, setOverallProgress] = useState(0);
+
+  // Get current roadmap based on selected type
+  const getCurrentRoadmap = useCallback(() => {
     switch (currentRoadmapType) {
       case 'devops':
         return devopsRoadmapData;
@@ -48,32 +50,39 @@ export const RoadmapProvider = ({ children }) => {
       default:
         return devopsRoadmapData;
     }
-  };
+  }, [currentRoadmapType]);
+
   // Load data from local storage
   useEffect(() => {
-    const savedData = localStorage.getItem('roadmapData');
     const savedDarkMode = localStorage.getItem('darkMode');
     const savedRoadmapType = localStorage.getItem('currentRoadmapType');
     
-    if (savedData) {
-      setRoadmapData(JSON.parse(savedData));
-    } else {
-      setRoadmapData(getCurrentRoadmap());
-    }
+    // Validate saved roadmap type
+    const validRoadmapTypes = ['devops', 'frontend', 'backend', 'design', 'genai', 'systemdesign', 'networks', 'os', 'dbms'];
+    
+    // Always start with fresh roadmap data instead of localStorage
+    setRoadmapData(getCurrentRoadmap());
     
     if (savedDarkMode === 'true') {
       setIsDarkMode(true);
       document.body.classList.add('dark-mode');
     }
     
-    if (savedRoadmapType) {
+    if (savedRoadmapType && validRoadmapTypes.includes(savedRoadmapType)) {
       setCurrentRoadmapType(savedRoadmapType);
+    } else {
+      // If invalid roadmap type in localStorage, reset to default
+      setCurrentRoadmapType('devops');
+      localStorage.setItem('currentRoadmapType', 'devops');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   // Update roadmap data when roadmap type changes
   useEffect(() => {
     const currentRoadmap = getCurrentRoadmap();
+    
+    // Always set fresh roadmap data when switching types
     setRoadmapData(currentRoadmap);
     
     // Set first category as current when switching roadmaps
@@ -83,9 +92,7 @@ export const RoadmapProvider = ({ children }) => {
     
     // Save current roadmap type to local storage
     localStorage.setItem('currentRoadmapType', currentRoadmapType);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentRoadmapType]);
-  // Update statistics when roadmap data changes
+  }, [currentRoadmapType, getCurrentRoadmap]);  // Update statistics when roadmap data changes
   useEffect(() => {
     updateStats();
     saveToLocalStorage();
@@ -198,4 +205,5 @@ export const RoadmapProvider = ({ children }) => {
   );
 };
 
-// useRoadmap hook moved to separate file in src/hooks/useRoadmap.js
+// Export RoadmapContext as default for backward compatibility
+export default RoadmapContext;

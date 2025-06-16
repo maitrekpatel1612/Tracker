@@ -1,17 +1,12 @@
-import './App.css';
+import './styles.css';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import SidebarToggle from './components/SidebarToggle';
 import CategoryDrawer from './components/CategoryDrawer';
-import { RoadmapProvider } from './contexts/RoadmapContextProvider';
+import { RoadmapProvider } from './contexts/RoadmapContext';
 import { useRoadmap } from './hooks/useRoadmap';
-
-// Import CSS from the original file and responsive CSS
-import './index.css';
-import './responsive.css';
-import './theme-toggle-enhanced.css';
 
 function AppContent() {
   const { 
