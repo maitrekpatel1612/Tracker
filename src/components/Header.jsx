@@ -10,13 +10,13 @@ const Header = ({
 }) => {
   const roadmapTypes = ['devops', 'frontend', 'backend', 'design', 'genai', 'systemdesign', 'networks', 'os', 'dbms'];
 
-  return (
-    <header className="header">      <div className="logo">
-      <div className="logo-icon">
-        <i className="fas fa-chart-line"></i>
+  return (    <header className="header">
+      <div className="logo">
+        <div className="logo-icon">
+          <i className="fas fa-chart-line"></i>
+        </div>
+        <h1>Tracker</h1>
       </div>
-      <h1>Tracker</h1>
-    </div>
       <div className="mobile-sidebar-toggle">
         <SidebarToggle toggleSidebar={toggleSidebar} />
       </div>
@@ -29,11 +29,11 @@ const Header = ({
               data-roadmap={type}
               onClick={() => onRoadmapChange(type)}
             >
-              {type === 'systemdesign' ? 'System Design' : 
-               type === 'networks' ? 'Networks' :
-               type === 'os' ? 'Operating System' :
-               type === 'dbms' ? 'DBMS' :
-               type.charAt(0).toUpperCase() + type.slice(1)}
+              {type === 'systemdesign' ? 'System Design' :
+                type === 'networks' ? 'CN' :
+                  type === 'os' ? 'OS' :
+                    type === 'dbms' ? 'DBMS' :
+                      type.charAt(0).toUpperCase() + type.slice(1)}
             </button>
           ))}
           </div>
