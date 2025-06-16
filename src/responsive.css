@@ -132,13 +132,27 @@ canvas {
     margin-left: 0;
     order: 1;
   }
-
   .header {
     flex-wrap: wrap;
     gap: 0.75rem;
     padding: 0.75rem 1rem;
     align-items: center;
-  }  .roadmap-tabs-container {
+    min-height: 80px;
+  }
+
+  .logo {
+    flex: 0 0 auto;
+  }
+
+  .header-actions {
+    flex: 0 0 auto;
+  }
+
+  .roadmap-nav {
+    flex: 1 1 100%;
+    order: 3;
+    margin-top: 0.5rem;
+  }.roadmap-tabs-container {
     width: 100%;
     overflow-x: auto;
     margin: 0;
@@ -156,24 +170,24 @@ canvas {
     background-color: rgba(0, 204, 102, 0.3);
     border-radius: 3px;
   }
-
   .roadmap-tabs {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 0.5rem;
     min-width: max-content;
-    width: 100%;
+    width: auto;
+    gap: 0.25rem;
   }
 
   .roadmap-tab {
     flex: 0 0 auto;
     white-space: nowrap;
     text-align: center;
-    font-size: 0.85rem;
-    margin: 0 3px;
+    font-size: 0.8rem;
+    margin: 0;
     border-radius: 6px;
-    padding: 0.5rem 0.75rem;
-    min-width: 100px;
+    padding: 0.4rem 0.6rem;
+    min-width: auto;
   }
 
   .stats-cards {
@@ -210,13 +224,14 @@ canvas {
 }
 
 /* ---------- Small screens (≤ 576px) ---------- */
-@media (max-width: 576px) {  .header {
+@media (max-width: 576px) {
+  .header {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-    min-height: 60px;
+    min-height: 70px;
     padding: 0.5rem;
     position: relative;
   }
@@ -241,6 +256,7 @@ canvas {
     order: 4;
     width: 100%;
     margin: 0.5rem 0 0;
+    justify-content: flex-start;
   }
 
   .stats-cards {
@@ -288,16 +304,22 @@ canvas {
   .logo-icon {
     width: 28px;
     height: 28px;
-  }
-  .roadmap-tab {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.5rem;
-    min-width: 80px;
+  }  .roadmap-tab {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.4rem;
+    min-width: auto;
+    flex-shrink: 0;
   }
   
   .roadmap-nav {
     width: 100%;
     overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .roadmap-tabs-container {
+    width: 100%;
+  }
   }
   
   .roadmap-tabs-container {

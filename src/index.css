@@ -126,12 +126,15 @@ body {
     position: sticky;
     top: 0;
     z-index: 10;
+    flex-wrap: wrap;
+    min-height: 70px;
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-shrink: 0;
 }
 
 .logo-icon {
@@ -155,6 +158,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-shrink: 0;
 }
 
 .theme-toggle-group {
@@ -829,13 +833,17 @@ body {
 .roadmap-nav {
     display: flex;
     align-items: center;
+    flex: 1;
+    justify-content: center;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .roadmap-tab {
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 0.8rem;
     background: none;
     border: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-muted);
     cursor: pointer;
@@ -843,6 +851,8 @@ body {
     transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
     text-transform: capitalize;
     letter-spacing: 0.025em;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .roadmap-tab:hover:not(.active) {
@@ -936,6 +946,25 @@ body {
 /* Mobile navigation styles */
 .roadmap-tabs-container {
   width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.roadmap-tabs-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.roadmap-tabs-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.roadmap-tabs-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 204, 102, 0.3);
+  border-radius: 2px;
+}
+
+.roadmap-tabs-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 204, 102, 0.5);
 }
 
 .roadmap-tabs {
@@ -946,6 +975,8 @@ body {
   border-radius: 12px;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-color);
+  min-width: max-content;
+  width: 100%;
 }
 
 /* Mobile sidebar styles */
@@ -1021,4 +1052,51 @@ body {
 .stat-card.totalhours .stat-icon {
     background: linear-gradient(135deg, rgba(23, 162, 184, 0.15), rgba(23, 162, 184, 0.05));
     color: var(--info);
+}
+
+/* Header layout improvements */
+@media (max-width: 1200px) {
+  .header {
+    flex-wrap: wrap;
+    min-height: 80px;
+  }
+  
+  .roadmap-nav {
+    flex: 1 1 100%;
+    order: 3;
+    margin-top: 0.5rem;
+  }
+  
+  .logo {
+    flex: 0 0 auto;
+  }
+  
+  .header-actions {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .roadmap-tab {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .roadmap-tab {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+  
+  .roadmap-tabs {
+    gap: 0.2rem;
+    padding: 4px;
+  }
+}
+
+/* Ensure tabs don't overflow */
+.roadmap-tabs-container {
+  flex: 1;
+  max-width: 100%;
 }

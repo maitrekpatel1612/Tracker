@@ -1,5 +1,5 @@
 // RoadmapContext Provider
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { RoadmapContext } from './RoadmapContext';
 import { roadmapData as devopsRoadmapData } from '../data/devopsRoadmap';
 import { frontendRoadmapData } from '../data/frontendRoadmap';
@@ -7,6 +7,9 @@ import { backendRoadmapData } from '../data/backendRoadmap';
 import { designRoadmapData } from '../data/designRoadmap';
 import { genAIRoadmapData } from '../data/genaiRoadmap';
 import { systemDesignRoadmapData } from '../data/systemdesignRoadmap';
+import { computerNetworkRoadmapData } from '../data/computerNetworkRoadmap';
+import { operatingSystemRoadmapData } from '../data/operatingSystemRoadmap';
+import { dbmsRoadmapData } from '../data/dbmsRoadmap';
 
 // Context provider component
 export const RoadmapProvider = ({ children }) => {  const [currentRoadmapType, setCurrentRoadmapType] = useState('devops');
@@ -19,9 +22,8 @@ export const RoadmapProvider = ({ children }) => {  const [currentRoadmapType, s
     notStarted: 0,
     totalHours: 0
   });
-  const [overallProgress, setOverallProgress] = useState(0);
-  // Get current roadmap based on selected type
-  const getCurrentRoadmap = () => {
+  const [overallProgress, setOverallProgress] = useState(0);  // Get current roadmap based on selected type
+  const getCurrentRoadmap = useCallback(() => {
     switch (currentRoadmapType) {
       case 'devops':
         return devopsRoadmapData;
@@ -35,35 +37,44 @@ export const RoadmapProvider = ({ children }) => {  const [currentRoadmapType, s
         return genAIRoadmapData;
       case 'systemdesign':
         return systemDesignRoadmapData;
+      case 'networks':
+        return computerNetworkRoadmapData;
+      case 'os':
+        return operatingSystemRoadmapData;
+      case 'dbms':
+        return dbmsRoadmapData;
       default:
         return devopsRoadmapData;
     }
-  };// Load data from local storage
+  }, [currentRoadmapType]);// Load data from local storage
   useEffect(() => {
-    const savedData = localStorage.getItem('roadmapData');
     const savedDarkMode = localStorage.getItem('darkMode');
     const savedRoadmapType = localStorage.getItem('currentRoadmapType');
     
-    if (savedData) {
-      setRoadmapData(JSON.parse(savedData));
-    } else {
-      setRoadmapData(getCurrentRoadmap());
-    }
+    // Validate saved roadmap type
+    const validRoadmapTypes = ['devops', 'frontend', 'backend', 'design', 'genai', 'systemdesign', 'networks', 'os', 'dbms'];
+    
+    // Always start with fresh roadmap data instead of localStorage
+    setRoadmapData(getCurrentRoadmap());
     
     if (savedDarkMode === 'true') {
       setIsDarkMode(true);
       document.body.classList.add('dark-mode');
     }
     
-    if (savedRoadmapType) {
+    if (savedRoadmapType && validRoadmapTypes.includes(savedRoadmapType)) {
       setCurrentRoadmapType(savedRoadmapType);
+    } else {
+      // If invalid roadmap type in localStorage, reset to default
+      setCurrentRoadmapType('devops');
+      localStorage.setItem('currentRoadmapType', 'devops');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Update roadmap data when roadmap type changes
+  }, []);  // Update roadmap data when roadmap type changes
   useEffect(() => {
     const currentRoadmap = getCurrentRoadmap();
+    
+    // Always set fresh roadmap data when switching types
     setRoadmapData(currentRoadmap);
     
     // Set first category as current when switching roadmaps
@@ -73,8 +84,7 @@ export const RoadmapProvider = ({ children }) => {  const [currentRoadmapType, s
     
     // Save current roadmap type to local storage
     localStorage.setItem('currentRoadmapType', currentRoadmapType);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentRoadmapType]);
+  }, [currentRoadmapType, getCurrentRoadmap]);
 
   // Update statistics when roadmap data changes
   useEffect(() => {

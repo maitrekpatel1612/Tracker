@@ -98,15 +98,15 @@ function AppContent() {
           currentCategory={currentCategory}
           onCategoryChange={handleCategoryChange}
           className={showSidebar ? 'show' : ''}
-        />
-
-        <MainContent 
+        />        <MainContent 
           stats={stats}
           isDarkMode={isDarkMode}
           currentCategory={currentCategory}
           categoryData={currentCategoryData}
           onTopicUpdate={handleTopicUpdate}
           overallProgress={overallProgress}
+          currentRoadmapType={currentRoadmapType}
+          categories={categories}
         />
         
         {/* New Category Drawer Component */}

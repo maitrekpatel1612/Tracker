@@ -8,7 +8,7 @@ const Header = ({
   toggleDarkMode,
   toggleSidebar
 }) => {
-  const roadmapTypes = ['devops', 'frontend', 'backend', 'design', 'genai', 'systemdesign'];
+  const roadmapTypes = ['devops', 'frontend', 'backend', 'design', 'genai', 'systemdesign', 'networks', 'os', 'dbms'];
 
   return (
     <header className="header">      <div className="logo">
@@ -29,7 +29,11 @@ const Header = ({
               data-roadmap={type}
               onClick={() => onRoadmapChange(type)}
             >
-              {type === 'systemdesign' ? 'System Design' : type.charAt(0).toUpperCase() + type.slice(1)}
+              {type === 'systemdesign' ? 'System Design' : 
+               type === 'networks' ? 'Networks' :
+               type === 'os' ? 'Operating System' :
+               type === 'dbms' ? 'DBMS' :
+               type.charAt(0).toUpperCase() + type.slice(1)}
             </button>
           ))}
           </div>

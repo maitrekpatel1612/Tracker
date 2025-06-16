@@ -5,6 +5,9 @@ import { backendRoadmapData } from '../data/backendRoadmap';
 import { designRoadmapData } from '../data/designRoadmap';
 import { genAIRoadmapData } from '../data/genaiRoadmap';
 import { systemDesignRoadmapData } from '../data/systemdesignRoadmap';
+import { computerNetworkRoadmapData } from '../data/computerNetworkRoadmap';
+import { operatingSystemRoadmapData } from '../data/operatingSystemRoadmap';
+import { dbmsRoadmapData } from '../data/dbmsRoadmap';
 
 // Create context
 export const RoadmapContext = createContext();
@@ -36,6 +39,12 @@ export const RoadmapProvider = ({ children }) => {
         return genAIRoadmapData;
       case 'systemdesign':
         return systemDesignRoadmapData;
+      case 'networks':
+        return computerNetworkRoadmapData;
+      case 'os':
+        return operatingSystemRoadmapData;
+      case 'dbms':
+        return dbmsRoadmapData;
       default:
         return devopsRoadmapData;
     }
