@@ -105,8 +105,6 @@ function AppContent() {
           categoryData={currentCategoryData}
           onTopicUpdate={handleTopicUpdate}
           overallProgress={overallProgress}
-          currentRoadmapType={currentRoadmapType}
-          categories={categories}
         />
         
         {/* New Category Drawer Component */}
