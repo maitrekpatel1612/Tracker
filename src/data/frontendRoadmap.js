@@ -12,12 +12,11 @@ export const frontendRoadmapData = {
         startDate: null,
         completionDate: null,
         notes: '',
-        subtopics: [
-          { id: 'wf-1-1', title: 'History of Web (Web 1.0 to Web 3.0)', status: 'not-started', resources: [] },
-          { id: 'wf-1-2', title: 'How computers communicate with each other', status: 'not-started', resources: [] },
-          { id: 'wf-1-3', title: 'How computers send data all over the world', status: 'not-started', resources: [] },
-          { id: 'wf-1-4', title: 'What is Domain Name, IP & MAC Addresses and Routing', status: 'not-started', resources: [] },
-          { id: 'wf-1-5', title: 'How ISP and DNS work together to deliver data', status: 'not-started', resources: [] }
+        subtopics: [          { id: 'wf-1-1', title: 'History of Web (Web 1.0 to Web 3.0)', status: 'not-started', resources: ['https://blog.hubspot.com/marketing/web-1-web-2-web-3', 'https://www.geeksforgeeks.org/web-1-0-web-2-0-and-web-3-0-with-their-difference/', 'https://medium.com/@mattiamanzati/the-evolution-of-the-web-web-1-0-vs-web-2-0-vs-web-3-0-50e37cbb2d6f', 'https://www.simplilearn.com/evolution-of-web-article', 'https://techcrunch.com/2021/12/07/what-is-web3/'] },
+          { id: 'wf-1-2', title: 'How computers communicate with each other', status: 'not-started', resources: ['https://www.cloudflare.com/learning/network-layer/how-does-the-internet-work/', 'https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work', 'https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm', 'https://computer.howstuffworks.com/internet/basics/internet.htm', 'https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet'] },
+          { id: 'wf-1-3', title: 'How computers send data all over the world', status: 'not-started', resources: ['https://www.submarinecablemap.com/', 'https://www.cloudflare.com/learning/network-layer/how-does-routing-work/', 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview', 'https://www.geeksforgeeks.org/tcp-ip-model/', 'https://www.youtube.com/watch?v=7_LPdttKXPc'] },
+          { id: 'wf-1-4', title: 'What is Domain Name, IP & MAC Addresses and Routing', status: 'not-started', resources: ['https://www.cloudflare.com/learning/dns/what-is-dns/', 'https://developer.mozilla.org/en-US/docs/Glossary/IP_Address', 'https://www.geeksforgeeks.org/difference-between-mac-address-and-ip-address/', 'https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13769-5.html', 'https://computer.howstuffworks.com/internet/basics/question5242.htm'] },
+          { id: 'wf-1-5', title: 'How ISP and DNS work together to deliver data', status: 'not-started', resources: ['https://www.cloudflare.com/learning/dns/what-is-dns/', 'https://howdns.works/', 'https://www.verisign.com/en_US/website-presence/online/how-dns-works/index.xhtml', 'https://www.geeksforgeeks.org/domain-name-system-dns-in-application-layer/', 'https://medium.com/@kamranahmedse/dns-in-one-picture-d7f4783db06a'] }
         ]
       },
       {
@@ -29,14 +28,13 @@ export const frontendRoadmapData = {
         startDate: null,
         completionDate: null,
         notes: '',
-        subtopics: [
-          { id: 'wf-2-1', title: 'What is Client-Server Model', status: 'not-started', resources: [] },
-          { id: 'wf-2-2', title: 'Difference between Client (browser) and Server', status: 'not-started', resources: [] },
-          { id: 'wf-2-3', title: 'How HTTP request and response cycle works', status: 'not-started', resources: [] },
-          { id: 'wf-2-4', title: 'What happens when you visit a website', status: 'not-started', resources: [] },
-          { id: 'wf-2-5', title: 'Difference between Front-end and Back-end', status: 'not-started', resources: [] },
-          { id: 'wf-2-6', title: 'What are Static Websites and Dynamic Websites', status: 'not-started', resources: [] },
-          { id: 'wf-2-7', title: 'What is web hosting and how it works', status: 'not-started', resources: [] }
+        subtopics: [          { id: 'wf-2-1', title: 'What is Client-Server Model', status: 'not-started', resources: ['https://www.geeksforgeeks.org/client-server-model/', 'https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Client-Server_overview', 'https://www.tutorialspoint.com/Client-Server-Model', 'https://medium.com/@malith.jayasinghe/what-is-client-server-architecture-6b57d9c87ba9', 'https://www.ibm.com/topics/client-server'] },
+          { id: 'wf-2-2', title: 'Difference between Client (browser) and Server', status: 'not-started', resources: ['https://www.geeksforgeeks.org/difference-between-client-and-server/', 'https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Client-Server_overview', 'https://www.javatpoint.com/client-vs-server', 'https://www.guru99.com/difference-between-client-server.html', 'https://techdifferences.com/difference-between-client-and-server.html'] },
+          { id: 'wf-2-3', title: 'How HTTP request and response cycle works', status: 'not-started', resources: ['https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview', 'https://www.cloudflare.com/learning/ddos/glossary/hypertext-transfer-protocol-http/', 'https://web.dev/http-cache/', 'https://www.geeksforgeeks.org/http-non-persistent-persistent-connection/', 'https://medium.com/@jen_strong/the-request-response-cycle-of-the-web-1b7e206e9047'] },
+          { id: 'wf-2-4', title: 'What happens when you visit a website', status: 'not-started', resources: ['https://github.com/alex/what-happens-when', 'https://medium.com/@maneesha.wijesinghe1/what-happens-when-you-type-an-url-in-the-browser-and-press-enter-bb0aa2449c1a', 'https://web.dev/howbrowserswork/', 'https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work', 'https://www.freecodecamp.org/news/what-happens-when-you-hit-url-in-your-browser/'] },
+          { id: 'wf-2-5', title: 'Difference between Front-end and Back-end', status: 'not-started', resources: ['https://www.geeksforgeeks.org/frontend-vs-backend/', 'https://blog.hubspot.com/website/frontend-vs-backend', 'https://www.coursera.org/articles/front-end-vs-back-end-development', 'https://www.freecodecamp.org/news/frontend-vs-backend-whats-the-difference/', 'https://careerfoundry.com/en/blog/web-development/what-is-the-difference-between-frontend-and-backend/'] },
+          { id: 'wf-2-6', title: 'What are Static Websites and Dynamic Websites', status: 'not-started', resources: ['https://www.geeksforgeeks.org/difference-between-static-and-dynamic-web-pages/', 'https://blog.hubspot.com/marketing/static-vs-dynamic-websites', 'https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Client-Server_overview', 'https://www.netlify.com/blog/2020/04/14/what-is-a-static-site-generator-and-3-ways-to-find-the-best-one/', 'https://kinsta.com/blog/static-vs-dynamic-website/'] },
+          { id: 'wf-2-7', title: 'What is web hosting and how it works', status: 'not-started', resources: ['https://www.hostinger.com/tutorials/what-is-web-hosting/', 'https://www.cloudflare.com/learning/serverless/glossary/web-hosting/', 'https://blog.hubspot.com/marketing/web-hosting-101', 'https://www.namecheap.com/guru-guides/what-is-web-hosting/', 'https://www.siteground.com/blog/what-is-web-hosting/'] }
         ]
       },
       {
@@ -48,12 +46,11 @@ export const frontendRoadmapData = {
         startDate: null,
         completionDate: null,
         notes: '',
-        subtopics: [
-          { id: 'wf-3-1', title: 'What is TCP protocol and why is widely used', status: 'not-started', resources: [] },
-          { id: 'wf-3-2', title: 'How Connection is established using TCP (3 Way handshake)', status: 'not-started', resources: [] },
-          { id: 'wf-3-3', title: 'What is UDP and why its used for fast communication', status: 'not-started', resources: [] },
-          { id: 'wf-3-4', title: 'How UDP establishes connection', status: 'not-started', resources: [] },
-          { id: 'wf-3-5', title: 'Difference between TCP and UDP', status: 'not-started', resources: [] }
+        subtopics: [          { id: 'wf-3-1', title: 'What is TCP protocol and why is widely used', status: 'not-started', resources: ['https://www.cloudflare.com/learning/ddos/glossary/tcp-ip/', 'https://www.geeksforgeeks.org/what-is-transmission-control-protocol-tcp/', 'https://developer.mozilla.org/en-US/docs/Glossary/TCP', 'https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:transporting-packets/a/transmission-control-protocol--tcp', 'https://www.javatpoint.com/tcp'] },
+          { id: 'wf-3-2', title: 'How Connection is established using TCP (3 Way handshake)', status: 'not-started', resources: ['https://www.geeksforgeeks.org/tcp-3-way-handshake-process/', 'https://www.guru99.com/tcp-3-way-handshake.html', 'https://www.sciencedirect.com/topics/computer-science/three-way-handshake', 'https://medium.com/@maneesha.wijesinghe1/tcp-3-way-handshake-process-b2bb4fb6c78c', 'https://www.fortinet.com/resources/cyberglossary/tcp-three-way-handshake'] },
+          { id: 'wf-3-3', title: 'What is UDP and why its used for fast communication', status: 'not-started', resources: ['https://www.cloudflare.com/learning/ddos/glossary/user-datagram-protocol-udp/', 'https://www.geeksforgeeks.org/user-datagram-protocol-udp/', 'https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:transporting-packets/a/user-datagram-protocol-udp', 'https://www.javatpoint.com/udp-protocol', 'https://developer.mozilla.org/en-US/docs/Glossary/UDP'] },
+          { id: 'wf-3-4', title: 'How UDP establishes connection', status: 'not-started', resources: ['https://www.geeksforgeeks.org/how-udp-works/', 'https://www.tutorialspoint.com/udp-connection-establishment', 'https://networklessons.com/cisco/ccna-routing-switching-icnd1-100-105/udp-user-datagram-protocol', 'https://www.ionos.com/digitalguide/server/know-how/udp-user-datagram-protocol/', 'https://study.com/academy/lesson/user-datagram-protocol-udp-definition-header-format.html'] },
+          { id: 'wf-3-5', title: 'Difference between TCP and UDP', status: 'not-started', resources: ['https://www.geeksforgeeks.org/differences-between-tcp-and-udp/', 'https://www.guru99.com/tcp-vs-udp-understanding-the-difference.html', 'https://www.cloudflare.com/learning/ddos/glossary/tcp-ip/', 'https://www.javatpoint.com/tcp-vs-udp', 'https://www.avast.com/c-tcp-vs-udp-difference'] }
         ]
       },
       {
@@ -65,14 +62,13 @@ export const frontendRoadmapData = {
         startDate: null,
         completionDate: null,
         notes: '',
-        subtopics: [
-          { id: 'wf-4-1', title: 'What is HTTP and its different version', status: 'not-started', resources: [] },
-          { id: 'wf-4-2', title: 'HTTP status code for responses', status: 'not-started', resources: [] },
-          { id: 'wf-4-3', title: 'What is HTTPS and why its better than HTTP', status: 'not-started', resources: [] },
-          { id: 'wf-4-4', title: 'How HTTPS provides a secure connection', status: 'not-started', resources: [] },
-          { id: 'wf-4-5', title: 'What is SSL/TLS Encryption', status: 'not-started', resources: [] },
-          { id: 'wf-4-6', title: 'What are Proxy and Reverse Proxy', status: 'not-started', resources: [] },
-          { id: 'wf-4-7', title: 'How VPN works and helps accessing restricted content', status: 'not-started', resources: [] }
+        subtopics: [          { id: 'wf-4-1', title: 'What is HTTP and its different version', status: 'not-started', resources: ['https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP', 'https://www.cloudflare.com/learning/ddos/glossary/hypertext-transfer-protocol-http/', 'https://web.dev/http2/', 'https://http3-explained.haxx.se/en/', 'https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/'] },
+          { id: 'wf-4-2', title: 'HTTP status code for responses', status: 'not-started', resources: ['https://developer.mozilla.org/en-US/docs/Web/HTTP/Status', 'https://httpstatuses.com/', 'https://www.restapitutorial.com/httpstatuscodes.html', 'https://http.cat/', 'https://www.w3schools.com/tags/ref_httpmessages.asp'] },
+          { id: 'wf-4-3', title: 'What is HTTPS and why its better than HTTP', status: 'not-started', resources: ['https://www.cloudflare.com/learning/ssl/what-is-https/', 'https://developers.google.com/web/fundamentals/security/encrypt-in-transit/why-https', 'https://blog.hubspot.com/marketing/what-is-https', 'https://www.ssl.com/faqs/what-is-https/', 'https://web.dev/why-https-matters/'] },
+          { id: 'wf-4-4', title: 'How HTTPS provides a secure connection', status: 'not-started', resources: ['https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/', 'https://www.ssl.com/article/ssl-tls-handshake-overview/', 'https://blog.cloudflare.com/keyless-ssl-the-nitty-gritty-technical-details/', 'https://hpbn.co/transport-layer-security-tls/', 'https://tls.ulfheim.net/'] },
+          { id: 'wf-4-5', title: 'What is SSL/TLS Encryption', status: 'not-started', resources: ['https://www.cloudflare.com/learning/ssl/what-is-ssl/', 'https://www.ssl.com/faqs/faq-what-is-ssl/', 'https://blog.hubspot.com/marketing/what-is-ssl', 'https://www.digicert.com/what-is-ssl-tls-and-https', 'https://developer.mozilla.org/en-US/docs/Glossary/TLS'] },
+          { id: 'wf-4-6', title: 'What are Proxy and Reverse Proxy', status: 'not-started', resources: ['https://www.cloudflare.com/learning/cdn/glossary/reverse-proxy/', 'https://www.nginx.com/resources/glossary/reverse-proxy-server/', 'https://blog.hubspot.com/marketing/what-is-a-proxy-server', 'https://www.geeksforgeeks.org/what-is-proxy-server/', 'https://medium.com/@leandromoreira/load-balancer-vs-reverse-proxy-vs-api-gateway-e9ec5809180c'] },
+          { id: 'wf-4-7', title: 'How VPN works and helps accessing restricted content', status: 'not-started', resources: ['https://www.cloudflare.com/learning/access-management/what-is-a-vpn/', 'https://blog.hubspot.com/marketing/vpn-definition', 'https://www.kaspersky.com/resource-center/definitions/what-is-a-vpn', 'https://www.howtogeek.com/133680/htg-explains-what-is-a-vpn/', 'https://nordvpn.com/what-is-a-vpn/'] }
         ]
       },
       {
@@ -85,10 +81,34 @@ export const frontendRoadmapData = {
         completionDate: null,
         notes: '',
         subtopics: [
-          { id: 'wf-5-1', title: 'Installing & Setting up VS Code', status: 'not-started', resources: [] },
-          { id: 'wf-5-2', title: 'Installing helpful extensions', status: 'not-started', resources: [] },
-          { id: 'wf-5-3', title: 'Setting up your browser for development', status: 'not-started', resources: [] },
-          { id: 'wf-5-4', title: 'What are file and folders and how to create them', status: 'not-started', resources: [] },
+          { id: 'wf-5-1', title: 'Installing & Setting up VS Code', status: 'not-started', resources: [
+            'https://code.visualstudio.com/docs/setup/setup-overview',
+            'https://www.freecodecamp.org/news/how-to-set-up-vs-code-for-web-development/',
+            'https://www.youtube.com/watch?v=fnPhJHN0jTE',
+            'https://scotch.io/tutorials/getting-started-with-visual-studio-code-for-web-development',
+            'https://medium.com/@bretcameron/visual-studio-code-setup-for-web-development-ff69ad23b7b7'
+          ] },
+          { id: 'wf-5-2', title: 'Installing helpful extensions', status: 'not-started', resources: [
+            'https://code.visualstudio.com/docs/editor/extension-marketplace',
+            'https://www.freecodecamp.org/news/favorite-vs-code-extensions/',
+            'https://blog.logrocket.com/top-10-vs-code-extensions-2021/',
+            'https://dev.to/thegeoffstevens/50-vs-code-themes-for-2020-45cc',
+            'https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next'
+          ] },
+          { id: 'wf-5-3', title: 'Setting up your browser for development', status: 'not-started', resources: [
+            'https://developer.chrome.com/docs/devtools/',
+            'https://firefox-source-docs.mozilla.org/devtools-user/',
+            'https://www.freecodecamp.org/news/chrome-dev-tools-explained/',
+            'https://blog.logrocket.com/improve-debugging-skills-chrome-devtools/',
+            'https://medium.com/@bretcameron/chrome-devtools-tips-tricks-21c47c593f7f'
+          ] },
+          { id: 'wf-5-4', title: 'What are file and folders and how to create them', status: 'not-started', resources: [
+            'https://www.computerhope.com/jargon/f/file.htm',
+            'https://edu.gcfglobal.org/en/windowsbasics/working-with-files/1/',
+            'https://www.digitaltrends.com/computing/what-is-a-file-folder/',
+            'https://support.microsoft.com/en-us/windows/create-a-new-folder-2c9945c6-1b62-4a1e-8618-7a8cd8d75de4',
+            'https://www.wikihow.com/Create-a-New-Folder-in-Windows-10'
+          ] },
           { id: 'wf-5-5', title: 'Testing our environment via serving a webpage - “Namaste Duniya”', status: 'not-started', resources: [] }
         ]
       }
