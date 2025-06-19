@@ -1163,10 +1163,9 @@ input:checked+.theme-slider:before {
 .topic-header {
     padding: 1.5rem;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
     cursor: pointer;
-    gap: 1rem;
+    gap: 0.75rem;
     position: relative;
     background: linear-gradient(135deg, 
         rgba(0, 204, 102, 0.02) 0%, 
@@ -1177,7 +1176,7 @@ input:checked+.theme-slider:before {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    flex: 1;
+    width: 100%;
 }
 
 .topic-icon {
@@ -1220,14 +1219,9 @@ input:checked+.theme-slider:before {
 .topic-title-wrapper {
     flex: 1;
     min-width: 0;
-}
-
-.topic-title-row {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .topic-title {
@@ -1236,44 +1230,26 @@ input:checked+.theme-slider:before {
     margin: 0;
     color: var(--text-color);
     line-height: 1.3;
-    flex: 1;
-}
-
-.topic-badges {
-    display: flex;
-    gap: 0.5rem;
-    flex-shrink: 0;
-}
-
-.topic-hours-badge,
-.topic-progress-badge {
-    background: linear-gradient(135deg, 
-        rgba(0, 204, 102, 0.1), 
-        rgba(0, 204, 102, 0.05));
-    color: var(--primary-color);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;    border: 1px solid rgba(0, 204, 102, 0.2);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
 }
 
 .topic-description {
     font-size: 0.9rem;
     color: var(--text-muted);
-    margin: 0 0 1rem 0;
+    margin: 0;
     line-height: 1.4;
 }
 
-.topic-progress-bar {
-    display: flex;
+.topic-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 0.5rem;
     align-items: center;
-    gap: 0.75rem;
-    margin-top: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.topic-progress-bar {
+    display: none;
 }
 
 .progress-track {
@@ -1327,29 +1303,55 @@ input:checked+.theme-slider:before {
     text-align: right;
 }
 
-.topic-controls {
+.topic-badges {
+    display: contents;
+}
+
+.topic-hours-badge,
+.topic-progress-badge {
+    background: linear-gradient(135deg, 
+        rgba(0, 204, 102, 0.1), 
+        rgba(0, 204, 102, 0.05));
+    color: var(--primary-color);
+    padding: 0.375rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    border: 1px solid rgba(0, 204, 102, 0.2);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    white-space: nowrap;
+    min-height: 32px;
+    text-align: center;
 }
 
 .topic-status-indicator {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .status-badge {
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
+    padding: 0.375rem 0.5rem;
+    border-radius: 8px;
     font-size: 0.75rem;
     font-weight: 500;
     display: flex;
-    align-items: center;    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
+    white-space: nowrap;
+    min-height: 32px;
+    text-align: center;
+    width: 100%;
 }
 
 .expand-btn {
@@ -1358,15 +1360,17 @@ input:checked+.theme-slider:before {
         rgba(0, 204, 102, 0.05));
     border: 1px solid rgba(0, 204, 102, 0.2);
     color: var(--primary-color);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+    flex-shrink: 0;
 }
 
 .expand-btn:hover {
@@ -1492,6 +1496,8 @@ input:checked+.theme-slider:before {
 .checkbox-wrapper {
     position: relative;
     flex-shrink: 0;
+    width: 20px;
+    height: 20px;
 }
 
 .subtopic-checkbox {
@@ -1506,9 +1512,11 @@ input:checked+.theme-slider:before {
     position: relative;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.9),        rgba(255, 255, 255, 0.7));
+        rgba(255, 255, 255, 0.9),        
+        rgba(255, 255, 255, 0.7));
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+    margin: 0;
 }
 
 .dark-mode .subtopic-checkbox {
@@ -1595,110 +1603,118 @@ input:checked+.theme-slider:before {
 .subtopic-status-indicator {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
     flex-shrink: 0;
 }
 
 .status-dot {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .status-dot.success {
     background: linear-gradient(135deg, var(--success), #20c463);
     color: white;
-    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    box-shadow: 0 2px 6px rgba(40, 167, 69, 0.25);
 }
 
 .status-dot.warning {
     background: linear-gradient(135deg, var(--warning), #ffcc02);
     color: #856404;
-    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+    box-shadow: 0 2px 6px rgba(255, 193, 7, 0.25);
 }
 
 .status-dot.neutral {
-    background: linear-gradient(135deg, rgba(160, 160, 160, 0.2), rgba(160, 160, 160, 0.1));
+    background: rgba(160, 160, 160, 0.1);
     color: var(--text-muted);
-    border: 1px solid rgba(160, 160, 160, 0.3);
+    border: 1.5px solid rgba(160, 160, 160, 0.3);
+    position: relative;
 }
 
-.status-text {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--text-muted);
+.status-dot.neutral::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(160, 160, 160, 0.5);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.status-dot.neutral i {
+    display: none;
 }
 
 .subtopic-resources {
-    margin-top: 1rem;
-    padding: 0.75rem;
-    background: linear-gradient(135deg, 
-        rgba(0, 204, 102, 0.03), 
-        rgba(0, 204, 102, 0.01));
-    border-radius: 8px;
-    border: 1px solid rgba(0, 204, 102, 0.1);
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .resources-header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: var(--primary-color);
 }
 
-.resources-list {
+.resources-grid {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    max-width: 100%;
 }
 
 .resource-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
     background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.8), 
-        rgba(255, 255, 255, 0.6));
-    border: 1px solid rgba(0, 204, 102, 0.1);
+        rgba(0, 204, 102, 0.08), 
+        rgba(0, 204, 102, 0.04));
+    border: 1px solid rgba(0, 204, 102, 0.15);
     border-radius: 6px;
     text-decoration: none;
-    color: var(--text-color);
-    font-size: 0.8rem;    transition: all 0.3s ease;
+    color: var(--primary-color);
+    font-size: 0.7rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+    min-height: 24px;
+    white-space: nowrap;
 }
 
 .dark-mode .resource-link {
     background: linear-gradient(135deg, 
-        rgba(60, 60, 60, 0.8), 
-        rgba(50, 50, 50, 0.6));
-    border-color: rgba(0, 204, 102, 0.15);
+        rgba(0, 204, 102, 0.12), 
+        rgba(0, 204, 102, 0.06));
+    border-color: rgba(0, 204, 102, 0.2);
 }
 
 .resource-link:hover {
-    transform: translateX(2px);
+    background: linear-gradient(135deg, 
+        rgba(0, 204, 102, 0.15), 
+        rgba(0, 204, 102, 0.08));
     border-color: var(--primary-color);
-    box-shadow: 0 2px 8px rgba(0, 204, 102, 0.15);
-    color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 204, 102, 0.15);
 }
 
-.resource-link .external-icon {
-    margin-left: auto;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
-}
-
-.resource-link:hover .external-icon {
-    opacity: 1;
+.resource-link i {
+    font-size: 0.65rem;
 }
 
 .subtopic-progress-bar {
@@ -1708,17 +1724,6 @@ input:checked+.theme-slider:before {
         rgba(0, 204, 102, 0.05));
     position: relative;
     overflow: hidden;
-}
-
-.subtopic-progress-bar .progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.subtopic-progress-bar .progress-fill.completed {
-    width: 100%;
 }
 
 /* =================================================================
@@ -2173,7 +2178,7 @@ input:checked+.theme-slider:before {
 @media (max-width: 480px) {
     .category-drawer {
         max-height: 85vh;
-        border-top-left-radius: 20px;
+        border-top-left-radius: 
         border-top-right-radius: 20px;
     }
 
@@ -2221,6 +2226,65 @@ input:checked+.theme-slider:before {
 
     .drawer-content {
         padding: 0 0.75rem 1.75rem;
+    }
+
+    /* Very small subtopic improvements */
+    .subtopic-content {
+        padding: 0.5rem;
+    }
+
+    .subtopic-main {
+        gap: 0.4rem;
+    }
+
+    .checkbox-wrapper {
+        width: 16px;
+        height: 16px;
+        margin-top: 1px;
+    }
+
+    .subtopic-checkbox {
+        width: 16px;
+        height: 16px;
+    }
+
+    .subtopic-checkbox:checked::before {
+        font-size: 8px;
+    }
+
+    .subtopic-title {
+        font-size: 0.8rem;
+    }
+
+    .subtopic-description {
+        font-size: 0.75rem;
+        margin-top: 0.3rem;
+    }
+
+    .status-dot {
+        width: 16px;
+        height: 16px;
+        font-size: 0.55rem;
+    }
+
+    .status-dot.neutral::before {
+        width: 4px;
+        height: 4px;
+    }
+
+    .resources-header {
+        font-size: 0.65rem;
+    }
+
+    .resource-link {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.3rem;
+        min-height: 20px;
+        border-radius: 4px;
+    }
+
+    .resource-link i {
+        font-size: 0.55rem;
     }
 }
 
@@ -2302,40 +2366,51 @@ input:checked+.theme-slider:before {
     .content {
         width: 100%;
         padding: 1rem;
-    }
-
-    /* Topic medium screen improvements */
+    }    /* Topic medium screen improvements */
     .topic-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
         padding: 1.25rem;
+        gap: 0.75rem;
     }
 
     .topic-main-content {
-        flex-direction: column;
-        width: 100%;
+        flex-direction: row;
+        align-items: flex-start;
         gap: 1rem;
     }
 
     .topic-icon {
-        align-self: flex-start;
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
     }
 
-    .topic-title-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-        width: 100%;
+    .topic-title {
+        font-size: 1rem;
     }
 
-    .topic-badges {
-        width: 100%;
-        justify-content: flex-start;
-    }    .topic-controls {
-        position: absolute;
-        top: 1.25rem;
-        right: 1.25rem;
+    .topic-description {
+        font-size: 0.85rem;
+    }
+
+    .topic-controls {
+        grid-template-columns: 1fr 1fr 1fr auto;
+        gap: 0.4rem;
+    }
+
+    .topic-hours-badge,
+    .topic-progress-badge {
+        padding: 0.35rem 0.4rem;
+        font-size: 0.7rem;
+        min-height: 30px;
+    }
+
+    .status-badge {
+        padding: 0.35rem 0.4rem;
+        font-size: 0.7rem;
+        min-height: 30px;
+    }    .expand-btn {
+        width: 30px;
+        height: 30px;
     }
 
     .content {
@@ -2601,7 +2676,7 @@ input:checked+.theme-slider:before {
 
     .stat-card {
         background: linear-gradient(145deg,
-                rgba(var(--card-bg-rgb), 0.95),
+                rgba(var(--card-bg), 0.95),
                 rgba(0, 204, 102, 0.05));
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
@@ -2683,78 +2758,96 @@ input:checked+.theme-slider:before {
 
     .topic-header {
         padding: 1rem;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
+        gap: 0.5rem;
     }
 
     .topic-main-content {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
-        gap: 1rem;
-        width: 100%;
+        gap: 0.75rem;
     }
 
     .topic-icon {
         width: 40px;
         height: 40px;
         font-size: 1rem;
-        align-self: flex-start;
+        flex-shrink: 0;
     }
 
     .topic-title-wrapper {
-        width: 100%;
-        order: 1;
-    }
-
-    .topic-title-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
+        flex: 1;
+        min-width: 0;
     }
 
     .topic-title {
-        font-size: 1rem;
-        line-height: 1.4;
-        margin-bottom: 0.5rem;
-        width: 100%;
+        font-size: 0.95rem;
+        line-height: 1.3;
+        margin-bottom: 0.25rem;
     }
 
-    .topic-badges {
-        width: 100%;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+    .topic-description {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
+    .topic-controls {
+        grid-template-columns: 1fr 1fr 1fr auto;
+        gap: 0.25rem;
+        margin-top: 0.5rem;
     }
 
     .topic-hours-badge,
     .topic-progress-badge {
-        font-size: 0.75rem;
-        padding: 0.4rem 0.8rem;
+        font-size: 0.65rem;
+        padding: 0.35rem 0.4rem;
+        min-height: 28px;
+        border-radius: 6px;
+    }
+
+    .status-badge {
+        font-size: 0.65rem;
+        padding: 0.35rem 0.4rem;
+        min-height: 28px;
+        border-radius: 6px;
+    }
+
+    .expand-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+    }
     }
 
     .topic-description {
         font-size: 0.85rem;
         line-height: 1.5;
-        margin-bottom: 0.75rem;
-    }
-
-    .topic-progress-bar {
-        margin-top: 0.75rem;
+        margin-bottom: 0;
+    }    .topic-controls {
+        flex-direction: row;
+        align-items: center;
         gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
     }
-
-    .progress-text {
-        font-size: 0.75rem;
+    
+    .topic-badges {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 0.5rem;
     }
-
-    .topic-controls {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        flex-direction: column;
+    
+    .topic-status-indicator {
+        order: 1;
+    }
+    
+    .expand-btn {
+        order: 2;
+    }    .topic-controls {
+        position: static;
+        flex-direction: row;
         gap: 0.5rem;
-        align-items: flex-end;
+        align-items: center;
     }
 
     .status-badge {
@@ -2779,9 +2872,7 @@ input:checked+.theme-slider:before {
 
     .subtopics-header h5 {
         font-size: 0.9rem;
-    }
-
-    .subtopic-item {
+    }    .subtopic-item {
         border-radius: 10px;
         margin-bottom: 0.5rem;
     }
@@ -2791,8 +2882,7 @@ input:checked+.theme-slider:before {
     }
 
     .subtopic-main {
-        gap: 0.75rem;
-        align-items: flex-start;
+        gap: 0.5rem;
     }
 
     .subtopic-title {
@@ -2806,45 +2896,53 @@ input:checked+.theme-slider:before {
         margin-top: 0.4rem;
     }
 
-    .subtopic-checkbox {
+    .checkbox-wrapper {
         width: 18px;
         height: 18px;
         margin-top: 2px;
     }
 
+    .subtopic-checkbox {
+        width: 18px;
+        height: 18px;
+    }
+
     .subtopic-status-indicator {
-        flex-direction: column;
         align-items: center;
-        gap: 0.25rem;
         margin-left: auto;
     }
 
-    .status-text {
-        font-size: 0.7rem;
-        text-align: center;
+    .status-dot {
+        width: 18px;
+        height: 18px;
+        font-size: 0.6rem;
     }
 
-    .status-dot {
-        width: 24px;
-        height: 24px;
-        font-size: 0.7rem;
+    .status-dot.neutral::before {
+        width: 5px;
+        height: 5px;
     }
 
     .subtopic-resources {
-        margin-top: 0.75rem;
-        padding-top: 0.75rem;
-        border-top: 1px solid rgba(0, 204, 102, 0.1);
+        margin-top: 0.5rem;
     }
 
     .resources-header {
-        font-size: 0.8rem;
-        margin-bottom: 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .resources-grid {
+        gap: 0.25rem;
     }
 
     .resource-link {
-        font-size: 0.75rem;
-        padding: 0.5rem;
-        border-radius: 8px;
+        font-size: 0.65rem;
+        padding: 0.2rem 0.4rem;
+        min-height: 22px;
+    }
+
+    .resource-link i {
+        font-size: 0.6rem;
     }
 
     .roadmap-container {
@@ -2878,11 +2976,20 @@ input:checked+.theme-slider:before {
 
     .stat-title i {
         font-size: 0.8rem;
-    }
-
-    /* Very small topic improvements */
+    }    /* Very small topic improvements */
     .topic-header {
         padding: 0.75rem;
+        gap: 0.4rem;
+    }
+
+    .topic-main-content {
+        gap: 0.5rem;
+    }
+
+    .topic-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
     }
 
     .topic-title {
@@ -2890,22 +2997,42 @@ input:checked+.theme-slider:before {
     }
 
     .topic-description {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 
-    .topic-badges {
-        gap: 0.25rem;
+    .topic-controls {
+        grid-template-columns: 1fr 1fr 1fr auto;
+        gap: 0.2rem;
+        margin-top: 0.4rem;
     }
 
     .topic-hours-badge,
     .topic-progress-badge {
-        font-size: 0.7rem;
-        padding: 0.3rem 0.6rem;
+        font-size: 0.6rem;
+        padding: 0.25rem 0.3rem;
+        min-height: 26px;
+        border-radius: 5px;
     }
 
-    .topic-controls {
-        top: 0.75rem;
-        right: 0.75rem;
+    .status-badge {
+        font-size: 0.6rem;
+        padding: 0.25rem 0.3rem;
+        min-height: 26px;
+        border-radius: 5px;
+    }    .expand-btn {
+        width: 26px;
+        height: 26px;
+        border-radius: 5px;
+    }
+    
+    .topic-status-indicator {
+        order: 1;
+        align-self: flex-end;
+    }
+    
+    .expand-btn {
+        order: 2;
+        align-self: flex-end;
     }
 
     .status-badge {
@@ -2941,20 +3068,19 @@ input:checked+.theme-slider:before {
 
     .stat-title {
         font-size: 0.9rem;
-    }
-
-    /* Topic tablet improvements */
+    }    /* Topic tablet improvements */
     .topic-header {
         padding: 1.25rem;
         flex-direction: row;
-        align-items: flex-start;
+        align-items: center;
         gap: 1rem;
     }
 
     .topic-main-content {
         flex-direction: row;
-        align-items: flex-start;
+        align-items: center;
         gap: 1rem;
+        flex: 1;
     }
 
     .topic-icon {
@@ -2965,7 +3091,7 @@ input:checked+.theme-slider:before {
 
     .topic-title-row {
         flex-direction: row;
-        align-items: flex-start;
+        align-items: center;
         gap: 1rem;
     }
 

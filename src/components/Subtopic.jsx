@@ -7,7 +7,14 @@ const Subtopic = ({ subtopic, onStatusChange }) => {
   if (!subtopic) {
     return null;
   }
-
+  const handleCheckboxChange = (e) => {
+    const isChecked = e.target.checked;
+    const newStatus = isChecked ? 'completed' : 'not-started';
+    
+    if (onStatusChange) {
+      onStatusChange(subtopic.id, newStatus);
+    }
+  };
   const getResourceLinks = () => {
     if (!subtopic.resources || subtopic.resources.length === 0) {
       return null;
@@ -17,9 +24,9 @@ const Subtopic = ({ subtopic, onStatusChange }) => {
       <div className="subtopic-resources">
         <div className="resources-header">
           <i className="fas fa-external-link-alt"></i>
-          <span>Resources</span>
+          <span>Resources ({subtopic.resources.length})</span>
         </div>
-        <div className="resources-list">
+        <div className="resources-grid">
           {subtopic.resources.map((resource, index) => (
             <a 
               key={index}
@@ -27,10 +34,10 @@ const Subtopic = ({ subtopic, onStatusChange }) => {
               target="_blank" 
               rel="noopener noreferrer"
               className="resource-link"
+              title={`Resource ${index + 1}`}
             >
               <i className="fas fa-link"></i>
-              <span>Resource {index + 1}</span>
-              <i className="fas fa-external-link-alt external-icon"></i>
+              <span>#{index + 1}</span>
             </a>
           ))}
         </div>
@@ -56,22 +63,13 @@ const Subtopic = ({ subtopic, onStatusChange }) => {
       className={`subtopic-item ${subtopic.status} ${isHovered ? 'hovered' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="subtopic-content">
-        <div className="subtopic-main">
-          <div className="checkbox-wrapper">
+    >      <div className="subtopic-content">
+        <div className="subtopic-main">          <div className="checkbox-wrapper">
             <input 
               type="checkbox" 
               className="subtopic-checkbox"
               checked={subtopic?.status === 'completed'}
-              onChange={(e) => {
-                if (onStatusChange) {
-                  onStatusChange(
-                    subtopic.id, 
-                    e.target.checked ? 'completed' : 'not-started'
-                  );
-                }
-              }}
+              onChange={handleCheckboxChange}
               id={`checkbox-${subtopic.id}`}
             />
             <div className="checkbox-ripple"></div>
@@ -84,17 +82,15 @@ const Subtopic = ({ subtopic, onStatusChange }) => {
             {subtopic.description && (
               <p className="subtopic-description">{subtopic.description}</p>
             )}
+            {getResourceLinks()}
           </div>
 
           <div className="subtopic-status-indicator">
             <div className={`status-dot ${statusInfo.color}`}>
               <i className={`fas ${statusInfo.icon}`}></i>
             </div>
-            <span className="status-text">{statusInfo.text}</span>
           </div>
         </div>
-
-        {getResourceLinks()}
       </div>
       
       <div className="subtopic-progress-bar">

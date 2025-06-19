@@ -37,19 +37,21 @@ const Topic = ({ topic, onTopicUpdate }) => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [topic.subtopics]);
-
-  const handleSubtopicStatusChange = (subtopicId, newStatus) => {
+  }, [topic.subtopics]);  const handleSubtopicStatusChange = (subtopicId, newStatus) => {
     const updatedSubtopics = topic.subtopics.map(subtopic => 
       subtopic.id === subtopicId 
         ? { ...subtopic, status: newStatus } 
         : subtopic
     );
     
-    onTopicUpdate?.({
+    const updatedTopic = {
       ...topic,
       subtopics: updatedSubtopics
-    });
+    };
+    
+    if (onTopicUpdate) {
+      onTopicUpdate(updatedTopic);
+    }
   };
 
   // Get status icon and text
@@ -84,53 +86,39 @@ const Topic = ({ topic, onTopicUpdate }) => {
   if (!topic) {
     return null;
   }
-
   const statusDisplay = getStatusDisplay();
   const completedCount = topic.subtopics ? topic.subtopics.filter(sub => sub.status === 'completed').length : 0;
   const totalSubtopics = topic.subtopics ? topic.subtopics.length : 0;
-  const progressPercentage = totalSubtopics > 0 ? (completedCount / totalSubtopics) * 100 : 0;
   
   return (
     <div 
       className={`topic-item ${expanded ? 'expanded' : ''} ${topic.status} ${isHovered ? 'hovered' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="topic-header" onClick={toggleExpanded}>
+    >      <div className="topic-header" onClick={toggleExpanded}>
         <div className="topic-main-content">
           <div className="topic-icon">
             <i className="fas fa-book-open"></i>
           </div>
           
           <div className="topic-title-wrapper">
-            <div className="topic-title-row">
-              <h4 className="topic-title">{topic.title}</h4>
-              <div className="topic-badges">
-                <span className="topic-hours-badge">
-                  <i className="fas fa-clock"></i>
-                  {topic.estimatedHours}h
-                </span>
-                <span className="topic-progress-badge">
-                  <i className="fas fa-list-check"></i>
-                  {completedCount}/{totalSubtopics}
-                </span>
-              </div>
-            </div>
+            <h4 className="topic-title">{topic.title}</h4>
             <p className="topic-description">{topic.description}</p>
-            
-            <div className="topic-progress-bar">
-              <div className="progress-track">
-                <div 
-                  className="progress-fill"
-                  style={{ width: `${progressPercentage}%` }}
-                ></div>
-              </div>
-              <span className="progress-text">{Math.round(progressPercentage)}%</span>
-            </div>
           </div>
         </div>
 
         <div className="topic-controls">
+          <div className="topic-badges">
+            <span className="topic-hours-badge">
+              <i className="fas fa-clock"></i>
+              {topic.estimatedHours}h
+            </span>
+            <span className="topic-progress-badge">
+              <i className="fas fa-list-check"></i>
+              {completedCount}/{totalSubtopics}
+            </span>
+          </div>
+          
           <div className="topic-status-indicator">
             <div 
               className="status-badge"

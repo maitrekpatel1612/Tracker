@@ -5,7 +5,7 @@ import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import SidebarToggle from './components/SidebarToggle';
 import CategoryDrawer from './components/CategoryDrawer';
-import { RoadmapProvider } from './contexts/RoadmapContext';
+import RoadmapProvider from './contexts/RoadmapContext';
 import { useRoadmap } from './hooks/useRoadmap';
 
 function AppContent() {

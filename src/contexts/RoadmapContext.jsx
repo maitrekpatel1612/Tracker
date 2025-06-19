@@ -10,10 +10,10 @@ import { operatingSystemRoadmapData } from '../data/operatingSystemRoadmap';
 import { dbmsRoadmapData } from '../data/dbmsRoadmap';
 
 // Create context
-export const RoadmapContext = createContext();
+const RoadmapContext = createContext();
 
 // Context provider component
-export const RoadmapProvider = ({ children }) => {
+const RoadmapProvider = ({ children }) => {
   const [currentRoadmapType, setCurrentRoadmapType] = useState('devops');
   const [currentCategory, setCurrentCategory] = useState('');
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -24,9 +24,7 @@ export const RoadmapProvider = ({ children }) => {
     notStarted: 0,
     totalHours: 0
   });
-  const [overallProgress, setOverallProgress] = useState(0);
-
-  // Get current roadmap based on selected type
+  const [overallProgress, setOverallProgress] = useState(0);  // Get current roadmap based on selected type
   const getCurrentRoadmap = useCallback(() => {
     switch (currentRoadmapType) {
       case 'devops':
@@ -51,7 +49,6 @@ export const RoadmapProvider = ({ children }) => {
         return devopsRoadmapData;
     }
   }, [currentRoadmapType]);
-
   // Load data from local storage
   useEffect(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
@@ -59,9 +56,6 @@ export const RoadmapProvider = ({ children }) => {
     
     // Validate saved roadmap type
     const validRoadmapTypes = ['devops', 'frontend', 'backend', 'design', 'genai', 'systemdesign', 'networks', 'os', 'dbms'];
-    
-    // Always start with fresh roadmap data instead of localStorage
-    setRoadmapData(getCurrentRoadmap());
     
     if (savedDarkMode === 'true') {
       setIsDarkMode(true);
@@ -71,28 +65,56 @@ export const RoadmapProvider = ({ children }) => {
     if (savedRoadmapType && validRoadmapTypes.includes(savedRoadmapType)) {
       setCurrentRoadmapType(savedRoadmapType);
     } else {
-      // If invalid roadmap type in localStorage, reset to default
-      setCurrentRoadmapType('devops');
+      // If invalid roadmap type in localStorage, reset to default      setCurrentRoadmapType('devops');
       localStorage.setItem('currentRoadmapType', 'devops');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Update roadmap data when roadmap type changes
+  }, []);  // Update roadmap data when roadmap type changes
   useEffect(() => {
     const currentRoadmap = getCurrentRoadmap();
     
-    // Always set fresh roadmap data when switching types
-    setRoadmapData(currentRoadmap);
+    // Debug specifically for DevOps
+    if (currentRoadmapType === 'devops') {
+      console.log('DevOps Debug - currentRoadmap:', currentRoadmap);
+      console.log('DevOps Debug - currentRoadmap keys:', Object.keys(currentRoadmap || {}));
+      
+      // Force fresh data for DevOps to fix the issue
+      setRoadmapData(currentRoadmap);
+      if (currentRoadmap && Object.keys(currentRoadmap).length > 0) {
+        const firstCategory = Object.keys(currentRoadmap)[0];
+        console.log('DevOps Debug - setting category to:', firstCategory);
+        setCurrentCategory(firstCategory);
+      }
+      localStorage.setItem('currentRoadmapType', currentRoadmapType);
+      return;
+    }
+    
+    // Try to load saved data from localStorage for this specific roadmap type
+    const savedRoadmapDataKey = `roadmapData_${currentRoadmapType}`;
+    const savedRoadmapData = localStorage.getItem(savedRoadmapDataKey);
+    let loadedData = currentRoadmap;
+    
+    if (savedRoadmapData) {
+      try {
+        const parsedData = JSON.parse(savedRoadmapData);
+        // Only use saved data if it has the same structure as current roadmap
+        if (parsedData && typeof parsedData === 'object') {
+          loadedData = parsedData;
+        }
+      } catch (err) {
+        console.warn('Failed to parse saved roadmap data, using fresh data', err);
+      }
+    }
+    
+    setRoadmapData(loadedData);
     
     // Set first category as current when switching roadmaps
-    if (currentRoadmap && Object.keys(currentRoadmap).length > 0) {
-      setCurrentCategory(Object.keys(currentRoadmap)[0]);
+    if (loadedData && Object.keys(loadedData).length > 0) {
+      setCurrentCategory(Object.keys(loadedData)[0]);
     }
     
     // Save current roadmap type to local storage
     localStorage.setItem('currentRoadmapType', currentRoadmapType);
-  }, [currentRoadmapType, getCurrentRoadmap]);  // Update statistics when roadmap data changes
+  }, [currentRoadmapType, getCurrentRoadmap]);// Update statistics when roadmap data changes
   useEffect(() => {
     updateStats();
     saveToLocalStorage();
@@ -112,13 +134,11 @@ export const RoadmapProvider = ({ children }) => {
     
     localStorage.setItem('darkMode', newDarkMode);
   };
-
   // Save roadmap data to local storage
   const saveToLocalStorage = () => {
-    localStorage.setItem('roadmapData', JSON.stringify(roadmapData));
-  };
-
-  // Update topic status
+    const savedRoadmapDataKey = `roadmapData_${currentRoadmapType}`;
+    localStorage.setItem(savedRoadmapDataKey, JSON.stringify(roadmapData));
+  };// Update topic status
   const updateTopic = (categoryId, topicId, updatedTopic) => {
     const updatedRoadmap = { ...roadmapData };
     
@@ -175,9 +195,7 @@ export const RoadmapProvider = ({ children }) => {
       id: categoryId,
       name: roadmapData[categoryId].name
     }));
-  };
-
-  // Get current category data
+  };  // Get current category data
   const getCurrentCategory = () => {
     return roadmapData[currentCategory] || null;
   };
@@ -195,8 +213,7 @@ export const RoadmapProvider = ({ children }) => {
     overallProgress,
     updateTopic,
     getCategories,
-    getCurrentCategory
-  };
+    getCurrentCategory  };
 
   return (
     <RoadmapContext.Provider value={contextValue}>
@@ -205,5 +222,6 @@ export const RoadmapProvider = ({ children }) => {
   );
 };
 
-// Export RoadmapContext as default for backward compatibility
-export default RoadmapContext;
+// Export both context and provider
+export { RoadmapContext };
+export default RoadmapProvider;
