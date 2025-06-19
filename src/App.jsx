@@ -95,7 +95,6 @@ function AppContent() {
           className={showSidebar ? 'show' : ''}
         />        <MainContent 
           stats={stats}
-          isDarkMode={isDarkMode}
           currentCategory={currentCategory}
           categoryData={currentCategoryData}
           onTopicUpdate={handleTopicUpdate}

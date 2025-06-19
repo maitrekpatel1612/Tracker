@@ -1,11 +1,9 @@
 import React from 'react';
 import StatsCards from './StatsCards';
-import ProgressChart from './ProgressChart';
 import TopicGroup from './TopicGroup';
 
 const MainContent = ({ 
   stats, 
-  isDarkMode,
   categoryData,
   onTopicUpdate,
   overallProgress,
@@ -29,7 +27,7 @@ const MainContent = ({
         </div>
       </main>
     );
-  }return (
+  }  return (
     <main className="content">
       <StatsCards stats={stats} overallProgress={overallProgress} />
       
@@ -41,8 +39,6 @@ const MainContent = ({
           />
         </div>
       </div>
-      
-      <ProgressChart isDarkMode={isDarkMode} />
     </main>
   );
 };

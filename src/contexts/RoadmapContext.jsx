@@ -72,23 +72,18 @@ const RoadmapProvider = ({ children }) => {
   useEffect(() => {
     const currentRoadmap = getCurrentRoadmap();
     
-    // Debug specifically for DevOps
+    // For DevOps, always use fresh data to avoid localStorage issues
     if (currentRoadmapType === 'devops') {
-      console.log('DevOps Debug - currentRoadmap:', currentRoadmap);
-      console.log('DevOps Debug - currentRoadmap keys:', Object.keys(currentRoadmap || {}));
-      
-      // Force fresh data for DevOps to fix the issue
+      localStorage.removeItem('roadmapData_devops');
       setRoadmapData(currentRoadmap);
       if (currentRoadmap && Object.keys(currentRoadmap).length > 0) {
-        const firstCategory = Object.keys(currentRoadmap)[0];
-        console.log('DevOps Debug - setting category to:', firstCategory);
-        setCurrentCategory(firstCategory);
+        setCurrentCategory(Object.keys(currentRoadmap)[0]);
       }
       localStorage.setItem('currentRoadmapType', currentRoadmapType);
       return;
     }
     
-    // Try to load saved data from localStorage for this specific roadmap type
+    // Try to load saved data from localStorage for other roadmap types
     const savedRoadmapDataKey = `roadmapData_${currentRoadmapType}`;
     const savedRoadmapData = localStorage.getItem(savedRoadmapDataKey);
     let loadedData = currentRoadmap;
@@ -96,7 +91,6 @@ const RoadmapProvider = ({ children }) => {
     if (savedRoadmapData) {
       try {
         const parsedData = JSON.parse(savedRoadmapData);
-        // Only use saved data if it has the same structure as current roadmap
         if (parsedData && typeof parsedData === 'object') {
           loadedData = parsedData;
         }
