@@ -46,22 +46,39 @@ const cardData = [
 
 const StatsCards = ({ stats, overallProgress }) => {
   return (
-    <div className="stats-cards beautiful-cards">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
       {cardData.map(card => (
         <div
-          className={`stat-card beautiful-card ${card.accentClass} bg-white shadow-lg rounded-xl p-6 relative flex flex-col items-center ring-1 ring-gray-100 hover:ring-gray-300 transform transition-all duration-300 hover:shadow-green`}
+          className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 relative flex flex-col items-center border border-gray-100 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
           key={card.key}
         >
-          <div className={`stat-accent beautiful-accent ${card.accentClass} absolute top-0 left-0 h-1 w-full`}></div>
-          <div className="stat-card-content text-center">
-            <div className="stat-number beautiful-number text-2xl font-bold mb-2">
+          <div className={`absolute top-0 left-0 h-1 w-full rounded-t-xl ${
+            card.accentClass === 'overallprogress' ? 'bg-blue-500' :
+            card.accentClass === 'completed' ? 'bg-green-500' :
+            card.accentClass === 'inprogress' ? 'bg-yellow-500' :
+            card.accentClass === 'notstarted' ? 'bg-gray-400' :
+            'bg-purple-500'
+          }`}></div>
+          
+          <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${
+            card.accentClass === 'overallprogress' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600' :
+            card.accentClass === 'completed' ? 'bg-green-100 dark:bg-green-900/30 text-green-600' :
+            card.accentClass === 'inprogress' ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600' :
+            card.accentClass === 'notstarted' ? 'bg-gray-100 dark:bg-gray-700 text-gray-600' :
+            'bg-purple-100 dark:bg-purple-900/30 text-purple-600'
+          }`}>
+            <i className={card.titleIcon}></i>
+          </div>
+          
+          <div className="text-center">
+            <div className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">
               {card.valueKey === 'overallProgress' 
                 ? `${overallProgress}${card.isPercentage ? '%' : ''}`
                 : stats[card.valueKey]
               }
             </div>
-            <div className="stat-title beautiful-title text-gray-600">
-              <i className={card.titleIcon}></i> {card.title}
+            <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
+              {card.title}
             </div>
           </div>
         </div>

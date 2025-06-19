@@ -1,4 +1,4 @@
-import './styles.css';
+import './tailwind.css';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
@@ -73,10 +73,8 @@ function AppContent() {
   };
   
   const categories = getCategories();
-  const currentCategoryData = getCurrentCategory();
-
-  return (
-    <div className={`app-container ${isDarkMode ? 'dark-mode' : ''}`}>
+  const currentCategoryData = getCurrentCategory();  return (
+    <div className={`min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 ${isDarkMode ? 'dark' : ''}`}>
       <Header 
         currentRoadmapType={currentRoadmapType}
         onRoadmapChange={handleRoadmapChange}
@@ -85,35 +83,56 @@ function AppContent() {
         toggleSidebar={toggleSidebar}
       />
 
-      <div className="dashboard">
-        <div className={`mobile-overlay ${showSidebar ? 'show' : ''}`} onClick={() => setShowSidebar(false)}></div>
+      <div className="flex">
+        {/* Desktop Sidebar */}
+        <div className={`hidden lg:block w-80 h-[calc(100vh-73px)] bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300`}>
+          <Sidebar 
+            categories={categories}
+            currentCategory={currentCategory}
+            onCategoryChange={handleCategoryChange}
+            className=""
+          />
+        </div>
         
-        <Sidebar 
-          categories={categories}
-          currentCategory={currentCategory}
-          onCategoryChange={handleCategoryChange}
-          className={showSidebar ? 'show' : ''}
-        />        <MainContent 
-          stats={stats}
-          currentCategory={currentCategory}
-          categoryData={currentCategoryData}
-          onTopicUpdate={handleTopicUpdate}
-          overallProgress={overallProgress}
-          currentRoadmapType={currentRoadmapType}
-          categories={categories}
-        />
+        {/* Mobile Sidebar Overlay */}
+        <div className={`lg:hidden fixed inset-0 z-40 ${showSidebar ? 'block' : 'hidden'}`}>
+          <div className="absolute inset-0 bg-black/50" onClick={() => setShowSidebar(false)}></div>
+          <div className="absolute left-0 top-0 h-full w-80 bg-white dark:bg-gray-800 shadow-xl">
+            <Sidebar 
+              categories={categories}
+              currentCategory={currentCategory}
+              onCategoryChange={handleCategoryChange}
+              className={showSidebar ? 'show' : ''}
+            />
+          </div>
+        </div>
         
-        {/* New Category Drawer Component */}
-        <CategoryDrawer
-          categories={categories}
-          currentCategory={currentCategory}
-          onCategoryChange={handleCategoryChange}
-          isOpen={showDrawer}
-          onClose={() => setShowDrawer(false)}
-        />
+        {/* Main Content */}
+        <div className="flex-1 min-h-[calc(100vh-73px)] overflow-y-auto">
+          <MainContent 
+            stats={stats}
+            currentCategory={currentCategory}
+            categoryData={currentCategoryData}
+            onTopicUpdate={handleTopicUpdate}
+            overallProgress={overallProgress}
+            currentRoadmapType={currentRoadmapType}
+            categories={categories}
+          />
+        </div>
       </div>
       
-      <SidebarToggle toggleDrawer={toggleDrawer} />
+      {/* Mobile Floating Toggle */}
+      <div className="lg:hidden">
+        <SidebarToggle toggleDrawer={toggleDrawer} />
+      </div>
+      
+      <CategoryDrawer
+        categories={categories}
+        currentCategory={currentCategory}
+        onCategoryChange={handleCategoryChange}
+        isOpen={showDrawer}
+        onClose={() => setShowDrawer(false)}
+      />
     </div>
   );
 }
