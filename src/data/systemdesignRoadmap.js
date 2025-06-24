@@ -977,5 +977,3 @@ export const systemDesignRoadmapData = {
     ]
   }
 };
-
-export default systemDesignRoadmapData;
